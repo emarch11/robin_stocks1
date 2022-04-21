@@ -143,11 +143,11 @@ def login(username=None, password=None, expiresIn=86400, scope='internal', by_sm
 
     # Try to log in normally.
     if not username:
-        username = input("Robinhood username: ")
+        username = os.environ.get("robinhood_username")
         payload['username'] = username
 
     if not password:
-        password = getpass.getpass("Robinhood password: ")
+        password = os.environ.get("robinhood_password")
         payload['password'] = password
 
     data = request_post(url, payload)
